@@ -7,3 +7,6 @@
 - ### Método Newton-Raphson
 
 - ### Método secante
+
+- ### Método bisección
+
