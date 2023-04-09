@@ -2,7 +2,7 @@ import numpy as np
 import math
 from prettytable import PrettyTable
 
-f = lambda x: x**3-2*x**2-11*x+12
+f = lambda x: x - np.tan(x) - np.pi
 
 def tabla(datos):
     tabla = PrettyTable()
@@ -33,8 +33,8 @@ def biseccion(f,a,b,tol):
         tabla(datos)
         return c
     
-b=-3
-a=3
+b=4.5
+a=4
 tol=1e-6
 raiz=biseccion(f,a,b,tol)
 print("La raíz es: ",raiz)
