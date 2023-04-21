@@ -1,6 +1,6 @@
 # MetodosNumericosPython
 
-## Metodos:
+## Metodos de raíz:
 
 - ### Método de falsa posición
 
@@ -10,3 +10,8 @@
 
 - ### Método bisección
 
+## Metodos de interpolación:
+
+- ### Método Gauss
+
+- ### Método Gregory-Newton Acendente/Descendente
