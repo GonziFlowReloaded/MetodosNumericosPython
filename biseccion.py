@@ -2,7 +2,7 @@ import numpy as np
 import math
 from prettytable import PrettyTable
 
-f = lambda x: x - np.tan(x) - np.pi
+f = lambda x: np.tan(x) - np.pi
 
 def tabla(datos):
     tabla = PrettyTable()

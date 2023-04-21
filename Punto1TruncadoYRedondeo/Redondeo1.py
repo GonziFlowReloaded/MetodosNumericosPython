@@ -20,3 +20,5 @@ division = round(resta/redondeo3, 3)
 
 print('13/14 - 6/7 redondeo: {}'.format(resta))
 print('(13/14 - 6/7)/2e redondeo: {}'.format(division))
+print('Error absoluto: {}'.format(abs(division - (var1-var2)/var3)))
+print('Error relativo: {}'.format((abs(division - (var1-var2)/var3))/((var1-var2)/var3)))

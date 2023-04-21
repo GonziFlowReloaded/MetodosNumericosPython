@@ -1,5 +1,10 @@
-import numpy as np
+import math
 from prettytable import PrettyTable
+def f(x):
+    return x - math.tan(x) + math.pi
+
+def g(x):
+    return math.tan(x) - math.pi
 
 def punto_fijo(f, x0, tol=1e-4, max_iter=20):
     datosTabla = []
@@ -16,10 +21,6 @@ def punto_fijo(f, x0, tol=1e-4, max_iter=20):
             return datosTabla
     return datosTabla
 
-
-
-
-
 def tabla(datos):
     tabla = PrettyTable()
     tabla.field_names = ['Iteración','a','f(a)','Error']
@@ -27,13 +28,14 @@ def tabla(datos):
         tabla.add_row(datos[i])
     print(tabla)
 
-
-
-f = lambda x: np.tan(x) - np.pi
-# f = lambda x 
-a = 4     
-b = 4.5
-
-respuesta = punto_fijo(f,b)
+respuesta = punto_fijo(g,4.5)
 
 tabla(respuesta)
+
+print('f(4.5) = {}'.format(f(4.5)))
+print('g(4.5) = {}'.format(g(4.5)))
+
+print('f(4) = {}'.format(f(4)))
+print('g(4) = {}'.format(g(4)))
+
+
