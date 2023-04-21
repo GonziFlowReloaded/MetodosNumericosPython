@@ -15,3 +15,6 @@
 - ### Método Gauss
 
 - ### Método Gregory-Newton Acendente/Descendente
+
+- ### Método Bessel
+
