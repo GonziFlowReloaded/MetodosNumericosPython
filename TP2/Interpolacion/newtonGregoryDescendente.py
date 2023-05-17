@@ -1,3 +1,8 @@
+import math
+def error_porcentual(valor_aproximado, valor_real):
+    return abs((valor_real - valor_aproximado) / valor_real) * 100
+    
+
 
 def newton_descendente(x, y, x0):
     n = len(x)
@@ -16,11 +21,22 @@ def newton_descendente(x, y, x0):
     return p
 
 # Ejemplo de uso
-x = [1.5,2,2.5,3,3.5,4]
-y = [2,8,14,15,8,2]
+x = []
+y = []
+arr = [[0, 1.0], [0.2, 0.9800665778412416], [0.4, 0.9210609940028851], [0.6000000000000001, 0.8253356149096782], [0.8, 0.6967067093471654], [1.0, 0.5403023058681398]]
 
-x0 = 4.3
-p = newton_descendente(x, y, x0)
-print("El valor interpolado en x =", x0, "es:", p)
+f = lambda x: math.cos(x)
 
+for i in range(len(arr)):
+    x.append(arr[i][0])
+    y.append(arr[i][1])
+
+
+valores = [0.1,0.5,0.9]
+print('Newton gregory descendente')
+print("Función: cos(x)")
+for valor in valores:
+    p = newton_descendente(x, y, valor)
+    print("El valor interpolado en x =", valor, "es:", p)
+    print("El error porcentual es:", error_porcentual(p, f(valor)), "%")
 

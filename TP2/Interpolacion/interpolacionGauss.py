@@ -1,3 +1,7 @@
+import numpy as np
+def error_porcentual(valor_aproximado, valor_real):
+    return abs((valor_real - valor_aproximado) / valor_real) * 100
+
 def gauss_interpolation(x: list, y: list, x_interpolate: float) -> float:
     
     # Determinar el tamaño de los arreglos x e y
@@ -17,8 +21,20 @@ def gauss_interpolation(x: list, y: list, x_interpolate: float) -> float:
 
     return y_interpolate
 
-x = [1.5,2,2.5,3,3.5,4]
-y = [2,8,14,15,8,2]
-x_interpolate = 2.3
-result = gauss_interpolation(x, y, x_interpolate)
-print(result)
+f = lambda x: np.cos(x)
+x = []
+y = []
+arreglo = [[0, 1.0], [0.2, 0.9800665778412416], [0.4, 0.9210609940028851], [0.6, 0.8253356149096782], [0.8, 0.6967067093471654], [1.0, 0.5403023058681398]]
+for i in range(len(arreglo)):
+    x.append(arreglo[i][0])
+    y.append(arreglo[i][1])
+
+
+valores = [0.1,0.5,0.9]
+
+print('Gauss')
+print("Función: cos(x)")
+for valor in valores:
+    p = gauss_interpolation(x, y, valor)
+    print("El valor interpolado en x =", valor, "es:", p)
+    print("El error porcentual es:", error_porcentual(p, f(valor)), "%")
