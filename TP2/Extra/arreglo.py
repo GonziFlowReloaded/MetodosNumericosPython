@@ -8,16 +8,48 @@ def funcion_b(x):
     return math.log(1+x)
 
 
-arrA = []
-arrB = []
+def newton_gregory_descendente(x, y, punto_evaluar):
+    n = len(x)
+    matriz_diferencias = [[0] * n for _ in range(n)]
+    
+    # Calcula las diferencias divididas descendentes
+    for i in range(n):
+        matriz_diferencias[i][0] = y[i]
+        
+    for j in range(1, n):
+        for i in range(n - j):
+            matriz_diferencias[i][j] = (matriz_diferencias[i+1][j-1] - matriz_diferencias[i][j-1]) / (x[i+j] - x[i])
+    
+    # Realiza la interpolación polinómica descendente
+    resultado_descendente = matriz_diferencias[0][0]
+    prod = 1
+    
+    for i in range(1, n):
+        prod *= (punto_evaluar - x[i-1])
+        resultado_descendente += prod * matriz_diferencias[0][i]
+        
+    return resultado_descendente
 
-aux = 0
-for i in range(6):
-    arrA.append([aux, math.cos(aux)])
-    # arrB.append([aux,funcion_b(i)])
-    aux += 0.2
-# print("Valores de la funcion a: ")
-print(arrA)
-# print("Valores de la funcion b: ")
-# print(arrB)
+
+def gregory_newton(x, y, punto_evaluar):
+    n = len(x)
+    matriz_diferencias = [[0] * n for _ in range(n)]
+    
+    # Calcula las diferencias divididas ascendentes
+    for i in range(n):
+        matriz_diferencias[i][0] = y[i]
+        
+    for j in range(1, n):
+        for i in range(n - j):
+            matriz_diferencias[i][j] = (matriz_diferencias[i][j-1] - matriz_diferencias[i+1][j-1]) / (x[i] - x[i+j])
+    
+    # Realiza la interpolación polinómica ascendente
+    resultado_ascendente = matriz_diferencias[n-1][0]
+    prod = 1
+    
+    for i in range(1, n):
+        prod *= (punto_evaluar - x[n-i])
+        resultado_ascendente += prod * matriz_diferencias[n-i-1][i]
+        
+    return resultado_ascendente
 

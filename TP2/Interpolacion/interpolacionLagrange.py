@@ -23,15 +23,3 @@ def interpolacion_lagrange(x, y):
 
   return np.poly1d(l)
 
-if __name__ == "__main__":
-  x = [0, 1, 2]
-  y = [1, 3, 2]
-
-  p = interpolacion_lagrange(x, y)  # Calcula el polinomio
-
-  print(p)
-
-  # x = 0.5
-  y_hat = p(0.5)  # Calcula el valor y_hat para x = 0.5 usando el polinomio
-
-  print(y_hat)
