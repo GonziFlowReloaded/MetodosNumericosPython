@@ -50,18 +50,30 @@ def grafica(xi,fi,pxi,pfi, funcion):
     plt.title('Interpolación Lagrange: '+ funcion)
     plt.show()
 
-
+puntosAEvaluar = [0.4, 0.9]
 
 print("Funcion: raiz(x+1)")
 pxi, pfi, pol, poli_simpli = valores(valoresX, valoresY_A)
 grafica(valoresX, valoresY_A, pxi, pfi,'raiz(x+1)')
 print("Polinomio: ", pol)
 print("Polinomio simplificado: ", poli_simpli)
+tabla = PrettyTable()
+tabla.field_names = ["Valor a evaluar", "Valor real", "Valor interpolado", "Error"]
+for valor in puntosAEvaluar:
+    tabla.add_row([valor, funB(valor), poli_simpli.subs(x, valor), abs(funB(valor) - poli_simpli.subs(x, valor)) / funB(valor)])
+print(tabla)
+
+
+
 
 print("Funcion: tan(x)")
 pxi, pfi, pol, poli_simpli = valores(valoresX, valoresY_B)
 grafica(valoresX, valoresY_B, pxi, pfi, 'tan(x)')
 print("Polinomio: ", pol)
 print("Polinomio simplificado: ", poli_simpli)
-
+tabla = PrettyTable()
+tabla.field_names = ["Valor a evaluar", "Valor real", "Valor interpolado", "Error"]
+for valor in puntosAEvaluar:
+    tabla.add_row([valor, funB(valor), poli_simpli.subs(x, valor), abs(funB(valor) - poli_simpli.subs(x, valor)) / funB(valor)])
+print(tabla)
 

@@ -1,12 +1,7 @@
 import sympy as sp
 import matplotlib.pyplot as plt
-
+from prettytable import PrettyTable
 import numpy as np
-
-
-
-
-
 
 def funA(x):
     return np.sqrt(x+1)
@@ -60,16 +55,30 @@ puntosB = []
 for i in range(len(valoresX)):
     puntosA.append((valoresX[i], valoresY_A[i]))
     puntosB.append((valoresX[i], valoresY_B[i]))
+puntosAEvaluar = [0.4, 0.9]
 
 
 print("Funcion: raiz(x+1)")
 funcion_interpolacion = interpolacion_parabolica_progresiva(puntosA)
 grafica(funcion_interpolacion, puntosA, 'raiz(x+1)')
 print("Polinomio: ", funcion_interpolacion)
-print("Polinomio simplificado: ", sp.simplify(funcion_interpolacion))
+poli_simpli = sp.simplify(funcion_interpolacion)
+print("Polinomio simplificado: ", poli_simpli)
+tabla = PrettyTable()
+tabla.field_names = ['Valor a evaluar', 'Valor real', 'Valor interpolado', 'Error']
+for valor in puntosAEvaluar:
+    tabla.add_row([valor, funA(valor), funcion_interpolacion.subs('x', valor), abs(funA(valor) - funcion_interpolacion.subs('x', valor))])
+print(tabla)
+
+
 
 print("Funcion: tan(x)")
 funcion_interpolacion = interpolacion_parabolica_progresiva(puntosB)
 grafica(funcion_interpolacion, puntosB, 'tan(x)')
 print("Polinomio: ", funcion_interpolacion)
 print("Polinomio simplificado: ", sp.simplify(funcion_interpolacion))
+tabla = PrettyTable()
+tabla.field_names = ['Valor a evaluar', 'Valor real', 'Valor interpolado', 'Error']
+for valor in puntosAEvaluar:
+    tabla.add_row([valor, funA(valor), funcion_interpolacion.subs('x', valor), abs(funA(valor) - funcion_interpolacion.subs('x', valor))])
+print(tabla)
