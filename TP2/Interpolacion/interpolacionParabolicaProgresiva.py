@@ -23,15 +23,3 @@ def metodo_parabolico_progresivo(x, y):
 
   return p
 
-if __name__ == "__main__":
-  x = [0, 1, 2]
-  y = [1, 3, 2]
-
-  p = metodo_parabolico_progresivo(x, y)  # Calcula el polinomio
-
-  print(p)
-
-  # x = 0.5
-  y_hat = p(0.5)  # Calcula el valor y_hat para x = 0.5 usando el polinomio
-
-  print(y_hat)
