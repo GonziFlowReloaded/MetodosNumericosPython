@@ -1,32 +1,22 @@
 import numpy as np
 
-def jacobi(A, b, x_init, tol=1e-6, max_iter=100):
-  """
-  Solves the linear system Ax = b using the Jacobi method.
+def jacobi(A, b, x0, tol=1e-6, max_iterations=100):
+    n = len(A)
+    x = x0.copy()
+    x_new = np.zeros_like(x)
 
-  Args:
-    A: The coefficient matrix.
-    b: The right-hand side vector.
-    x_init: The initial guess for the solution.
-    tol: The tolerance for convergence.
-    max_iter: The maximum number of iterations.
+    for k in range(max_iterations):
+        for i in range(n):
+            sum_term = 0
+            for j in range(n):
+                if j != i:
+                    sum_term += A[i][j] * x[j]
+            x_new[i] = (b[i] - sum_term) / A[i][i]
+        
+        if np.linalg.norm(x_new - x) < tol:
+            break
+        
+        x = x_new.copy()
 
-  Returns:
-    The solution to the linear system.
-  """
-
-  # Initialize the solution.
-  x = x_init
-
-  # Iterate until convergence or the maximum number of iterations is reached.
-  for i in range(max_iter):
-
-    # Update the solution.
-    x = (b - A @ x) / A.diagonal()
-
-    # Check for convergence.
-    if np.linalg.norm(x - x_init) < tol:
-      break
-
-  return x
+    return x_new
 
