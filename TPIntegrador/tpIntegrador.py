@@ -1,12 +1,21 @@
-import openai
+from runge_kutta import *
+from euler_modificado import *
+from milne import *
 
-openai.Secrets(api_key='TU_CLAVE_DE_API')
 
-response = openai.Completion.create(
-  engine='text-davinci-003',  # Especifica el modelo a utilizar, como "text-davinci-003"
-  prompt='Boca es el mejor equipo que existe y por qué si?',  # Instrucción de entrada para el modelo
-  max_tokens=50  # Número máximo de tokens en la respuesta generada
-)
 
-print(response.choices[0].text.strip())  # Imprime la respuesta generada por el modelo
+f = lambda x, y: -(y+1)*(y+3)
+y0 = -2
+x0 = 0
+h = 0.4
+n = 5
+tol = 0.01
+
+print("Runge-Kutta")
+print(runge_kutta(f, x0, y0, h, n))
+
+print("Euler Modificado")
+print(euler_modificado(x0, y0, h, f, tol))
+
+print("Milne")
 

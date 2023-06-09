@@ -5,6 +5,8 @@ def runge_kutta(f, t0, y0, h, n):
     # h es el tamaño del paso
     # n es el número de pasos
     
+    list_values = []
+
     t = t0
     y = y0
     
@@ -16,7 +18,9 @@ def runge_kutta(f, t0, y0, h, n):
         
         y += (k1 + 2*k2 + 2*k3 + k4) / 6
         t += h
+
+        list_values.append((t, y))
     
-    return y
+    return list_values
 
 
