@@ -6,9 +6,11 @@ import matplotlib.pyplot as plt
 from sympy import *
 
 def funA(x):
+    # Definir la función raíz cuadrada de (x + 1)
     return np.sqrt(x+1)
 
 def funB(x):
+    # Definir la función tangente de x
     return np.tan(x)
 
 valoresX = np.array([0, 0.1, 0.3, 0.8, 1])
@@ -17,6 +19,7 @@ valoresY_B = [funB(x) for x in valoresX]
 
 x = Symbol('x')
 def polinomioL(xi, fi):
+    # Calcular el polinomio de interpolación de Lagrange
     polinomio = 0
     for i in range(len(xi)):
         numerador = 1
@@ -30,6 +33,7 @@ def polinomioL(xi, fi):
     return polinomio
 
 def valores(xi, fi):
+    # Calcular los valores para la interpolación de Lagrange
     pol = polinomioL(xi, fi)
     poli_simpli = pol.expand()
     px = lambdify(x, poli_simpli)
@@ -41,6 +45,7 @@ def valores(xi, fi):
     return pxi, pfi, pol, poli_simpli
 
 def grafica(xi,fi,pxi,pfi, funcion):
+    # Graficar los puntos y el polinomio interpolado
     plt.plot(xi, fi, 'o', label = 'Puntos')
     plt.plot(pxi, pfi, label = 'Polinomio')
     plt.legend()
@@ -50,8 +55,10 @@ def grafica(xi,fi,pxi,pfi, funcion):
     plt.title('Interpolación Lagrange: '+ funcion)
     plt.show()
 
+# Valores a evaluar
 puntosAEvaluar = [0.4, 0.9]
 
+# Interpolación para la función raiz(x+1)
 print("Funcion: raiz(x+1)")
 pxi, pfi, pol, poli_simpli = valores(valoresX, valoresY_A)
 grafica(valoresX, valoresY_A, pxi, pfi,'raiz(x+1)')
@@ -65,7 +72,7 @@ print(tabla)
 
 
 
-
+# Interpolación para la función tan(x)
 print("Funcion: tan(x)")
 pxi, pfi, pol, poli_simpli = valores(valoresX, valoresY_B)
 grafica(valoresX, valoresY_B, pxi, pfi, 'tan(x)')

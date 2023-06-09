@@ -4,19 +4,22 @@ from prettytable import PrettyTable
 import numpy as np
 
 def funA(x):
+    # Función A: raiz(x+1)
     return np.sqrt(x+1)
 
 def funB(x):
+    # Función B: tan(x)
     return np.tan(x)
 
 def interpolacion_parabolica_progresiva(puntos):
+    # Interpolación parabólica progresiva
     x = sp.symbols('x')
     n = len(puntos)
 
-    # Initialize the interpolation polynomial
+    # Inicializar el polinomio de interpolación
     P = 0
 
-    # Calculate the divided differences
+    # Calcular las diferencias divididas
     divided_diff = []
     for i in range(n):
         divided_diff.append(puntos[i][1])
@@ -25,7 +28,7 @@ def interpolacion_parabolica_progresiva(puntos):
         for j in range(n - 1, i - 1, -1):
             divided_diff[j] = (divided_diff[j] - divided_diff[j - 1]) / (puntos[j][0] - puntos[j - i][0])
 
-    # Construct the interpolation polynomial
+    # Construir el polinomio de interpolación
     for i in range(n):
         term = divided_diff[i]
         for j in range(i):
@@ -35,6 +38,7 @@ def interpolacion_parabolica_progresiva(puntos):
     return P
 
 def grafica(funcion_interpolacion, puntos, fStr):
+    # Graficar la función interpolada y los puntos
     x_vals = np.linspace(puntos[0][0], puntos[-1][0], 100)
     y_vals = [funcion_interpolacion.subs('x', val) for val in x_vals]
 
@@ -53,12 +57,15 @@ valoresY_B = [funB(x) for x in valoresX]
 puntosA = []
 puntosB = []
 for i in range(len(valoresX)):
+    # Crear puntos (x, y) para la función A y B
     puntosA.append((valoresX[i], valoresY_A[i]))
     puntosB.append((valoresX[i], valoresY_B[i]))
+# Puntos a Evaluar
 puntosAEvaluar = [0.4, 0.9]
 
 
 print("Funcion: raiz(x+1)")
+# Calcular la interpolación para la función A
 funcion_interpolacion = interpolacion_parabolica_progresiva(puntosA)
 grafica(funcion_interpolacion, puntosA, 'raiz(x+1)')
 print("Polinomio: ", funcion_interpolacion)
@@ -73,6 +80,7 @@ print(tabla)
 
 
 print("Funcion: tan(x)")
+# Calcular la interpolación para la función B
 funcion_interpolacion = interpolacion_parabolica_progresiva(puntosB)
 grafica(funcion_interpolacion, puntosB, 'tan(x)')
 print("Polinomio: ", funcion_interpolacion)
