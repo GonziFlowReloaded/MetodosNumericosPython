@@ -4,6 +4,7 @@ def euler_modificado(t0, y0, h, f, tolerancia):
     list_values = []
 
     t_f = t0 + h
+    
     while t < t_f:
         k1 = f(t, y)
         k2 = f(t + h/2, y + h/2 * k1)
