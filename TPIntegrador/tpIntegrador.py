@@ -26,9 +26,9 @@ euler_modificadoValores_y = [x[1] for x in euler_modificadoValores]
 
 
 # Graficar la función y los puntos específicos
-plt.plot(runge_kuttaValores_x, runge_kuttaValores_y, label="Runge-Kutta")
-plt.plot(euler_modificadoValores_x, euler_modificadoValores_y, label="Euler Modificado")
-plt.plot(milne2Valores_x, milne2Valores_y, label="Milne")
+plt.scatter(runge_kuttaValores_x, runge_kuttaValores_y, label="Runge-Kutta")
+plt.scatter(euler_modificadoValores_x, euler_modificadoValores_y, label="Euler Modificado")
+plt.scatter(milne2Valores_x, milne2Valores_y, label="Milne")
 
 #Graficar la funcion
 x = np.linspace(x0, x0 + n * h, 100)
