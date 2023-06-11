@@ -9,6 +9,7 @@ def milne(f, t0, y0, h, n):
     t = t0
     y = y0
     
+    # Paso de arranque utilizando el método de Runge-Kutta de orden 4
     for i in range(3):
         k1 = h * f(t, y)
         k2 = h * f(t + h/2, y + k1/2)
@@ -18,6 +19,7 @@ def milne(f, t0, y0, h, n):
         y += (k1 + 4*k2 + k3) * h / 6
         t += h
     
+    # Iteración principal utilizando el método de Milne
     for i in range(3, n):
         y_pred = y + (h/24) * (55*f(t, y) - 59*f(t-h, y) + 37*f(t-2*h, y) - 9*f(t-3*h, y))
         y = y + (h/24) * (9*f(t+h, y_pred) + 19*f(t, y) - 5*f(t-h, y) + f(t-2*h, y))
@@ -34,9 +36,9 @@ def milne_2(f, y0, t0, tf, h, tol):
     # Tolerancia tol
 
     # Calcula el número total de pasos
-    n = int((tf - t0) / h)
-    t = np.linspace(t0, tf, n + 1)
-    y = np.zeros(n + 1)
+    n = int((tf - t0) / h)              # Número total de pasos
+    t = np.linspace(t0, tf, n + 1)      # Vector de valores de t
+    y = np.zeros(n + 1)                 # Vector de valores de y
     y[0] = y0
 
     # Paso de predicción
