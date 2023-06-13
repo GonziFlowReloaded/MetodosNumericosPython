@@ -15,7 +15,7 @@ tol = 0.01
 
 #Asignacion de valores
 runge_kuttaValores = runge_kutta(f, x0, y0, h, n)
-euler_modificadoValores = euler_modificado_v2(f, x0, x0 + n * h, h, y0, tol)
+euler_modificadoValores = modificado_euler_v3(f, x0, x0 + n * h, y0, h, tol)
 milne2Valores_x, milne2Valores_y = milne_2(f, y0, x0, x0 + n * h, h, tol)
 
 runge_kuttaValores_x = [x[0] for x in runge_kuttaValores]

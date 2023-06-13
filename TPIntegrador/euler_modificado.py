@@ -55,3 +55,32 @@ def euler_modificado_v2(f, a, b, h, y0, tol=1e-2):
             break
     
     return list_values
+
+
+
+def modificado_euler_v3(f,x, xn, y, h, tolerance):
+    lista = []
+    def predict(x, y):
+        # Calcula el valor de y predicho para el próximo paso
+        y1p = y + h * f(x, y)
+        return y1p
+
+    def correct(x, y, x1, y1):
+        # Corrige el valor predicho utilizando el método de Euler modificado
+        y1c = y1
+        while True:
+            y1 = y1c
+            y1c = y + 0.5 * h * (f(x, y) + f(x1, y1))
+            if abs(y1c - y1) <= tolerance:
+                break
+        return y1c
+
+    while x < xn:
+        x1 = x + h
+        y1p = predict(x, y)
+        y1c = correct(x, y, x1, y1p)
+        x = x1
+        y = y1c
+        lista.append([x, y])
+
+    return lista
